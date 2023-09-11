@@ -82,7 +82,8 @@ def fetchMessages(channelID, lastMsgID):
         if int(lastMsgID) > 0:
             url += f'&after={lastMsgID}'
         pulledMsgs = requests.get(
-            url, headers={'Authorization': 'Bot ' + BOT_TOKEN}).json()
+            url, headers={'Authorization': f'Bot {BOT_TOKEN}'}
+        ).json()
         lastMsgID = pulledMsgs[0]['id']
         reqLen = len(pulledMsgs)
         messages.append(pulledMsgs)
@@ -155,8 +156,6 @@ def createCollage(images, overlayColor, foregroundImgUrl):
                     print(
                         f'[Img {len(images) - imageIndex}/{len(images)}] Discord image not applied! Error: {e}'
                     )
-                    pass
-
                 imageIndex -= 1
 
                 if imageIndex == -1:
